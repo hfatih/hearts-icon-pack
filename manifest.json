@@ -1,0 +1,725 @@
+{
+  "schemaVersion": 1,
+  "packageType": "icon_pack",
+  "name": "Hearts Icon Pack",
+  "description": "140 aesthetic glossy 3D heart icons across 14 vibrant squircle bases and 10 puffy candy heart finishes for Stream Deck & Evoxdeck.",
+  "version": "1.0.0",
+  "author": {
+    "id": "hfatih",
+    "name": "Fatih Han",
+    "url": "https://github.com/Hfatih"
+  },
+  "homepage": "https://hfatih.github.io/hearts-icon-pack/",
+  "repository": "https://github.com/Hfatih/hearts-icon-pack",
+  "license": "MIT",
+  "requiredActions": [],
+  "requiredIntegrations": [],
+  "assets": {
+    "icons": [
+      {
+        "id": "heart-001-pink-pearl",
+        "name": "Pink / Pearl Heart",
+        "path": "icons/heart-001-pink-pearl.png"
+      },
+      {
+        "id": "heart-002-pink-ruby",
+        "name": "Pink / Ruby Heart",
+        "path": "icons/heart-002-pink-ruby.png"
+      },
+      {
+        "id": "heart-003-pink-pink",
+        "name": "Pink / Pink Heart",
+        "path": "icons/heart-003-pink-pink.png"
+      },
+      {
+        "id": "heart-004-pink-aqua",
+        "name": "Pink / Aqua Heart",
+        "path": "icons/heart-004-pink-aqua.png"
+      },
+      {
+        "id": "heart-005-pink-cobalt",
+        "name": "Pink / Cobalt Heart",
+        "path": "icons/heart-005-pink-cobalt.png"
+      },
+      {
+        "id": "heart-006-pink-lime",
+        "name": "Pink / Lime Heart",
+        "path": "icons/heart-006-pink-lime.png"
+      },
+      {
+        "id": "heart-007-pink-gold",
+        "name": "Pink / Gold Heart",
+        "path": "icons/heart-007-pink-gold.png"
+      },
+      {
+        "id": "heart-008-pink-violet",
+        "name": "Pink / Violet Heart",
+        "path": "icons/heart-008-pink-violet.png"
+      },
+      {
+        "id": "heart-009-pink-obsidian",
+        "name": "Pink / Obsidian Heart",
+        "path": "icons/heart-009-pink-obsidian.png"
+      },
+      {
+        "id": "heart-010-pink-silver",
+        "name": "Pink / Silver Heart",
+        "path": "icons/heart-010-pink-silver.png"
+      },
+      {
+        "id": "heart-011-black-pearl",
+        "name": "Black / Pearl Heart",
+        "path": "icons/heart-011-black-pearl.png"
+      },
+      {
+        "id": "heart-012-black-ruby",
+        "name": "Black / Ruby Heart",
+        "path": "icons/heart-012-black-ruby.png"
+      },
+      {
+        "id": "heart-013-black-pink",
+        "name": "Black / Pink Heart",
+        "path": "icons/heart-013-black-pink.png"
+      },
+      {
+        "id": "heart-014-black-aqua",
+        "name": "Black / Aqua Heart",
+        "path": "icons/heart-014-black-aqua.png"
+      },
+      {
+        "id": "heart-015-black-cobalt",
+        "name": "Black / Cobalt Heart",
+        "path": "icons/heart-015-black-cobalt.png"
+      },
+      {
+        "id": "heart-016-black-lime",
+        "name": "Black / Lime Heart",
+        "path": "icons/heart-016-black-lime.png"
+      },
+      {
+        "id": "heart-017-black-gold",
+        "name": "Black / Gold Heart",
+        "path": "icons/heart-017-black-gold.png"
+      },
+      {
+        "id": "heart-018-black-violet",
+        "name": "Black / Violet Heart",
+        "path": "icons/heart-018-black-violet.png"
+      },
+      {
+        "id": "heart-019-black-obsidian",
+        "name": "Black / Obsidian Heart",
+        "path": "icons/heart-019-black-obsidian.png"
+      },
+      {
+        "id": "heart-020-black-silver",
+        "name": "Black / Silver Heart",
+        "path": "icons/heart-020-black-silver.png"
+      },
+      {
+        "id": "heart-021-red-pearl",
+        "name": "Red / Pearl Heart",
+        "path": "icons/heart-021-red-pearl.png"
+      },
+      {
+        "id": "heart-022-red-ruby",
+        "name": "Red / Ruby Heart",
+        "path": "icons/heart-022-red-ruby.png"
+      },
+      {
+        "id": "heart-023-red-pink",
+        "name": "Red / Pink Heart",
+        "path": "icons/heart-023-red-pink.png"
+      },
+      {
+        "id": "heart-024-red-aqua",
+        "name": "Red / Aqua Heart",
+        "path": "icons/heart-024-red-aqua.png"
+      },
+      {
+        "id": "heart-025-red-cobalt",
+        "name": "Red / Cobalt Heart",
+        "path": "icons/heart-025-red-cobalt.png"
+      },
+      {
+        "id": "heart-026-red-lime",
+        "name": "Red / Lime Heart",
+        "path": "icons/heart-026-red-lime.png"
+      },
+      {
+        "id": "heart-027-red-gold",
+        "name": "Red / Gold Heart",
+        "path": "icons/heart-027-red-gold.png"
+      },
+      {
+        "id": "heart-028-red-violet",
+        "name": "Red / Violet Heart",
+        "path": "icons/heart-028-red-violet.png"
+      },
+      {
+        "id": "heart-029-red-obsidian",
+        "name": "Red / Obsidian Heart",
+        "path": "icons/heart-029-red-obsidian.png"
+      },
+      {
+        "id": "heart-030-red-silver",
+        "name": "Red / Silver Heart",
+        "path": "icons/heart-030-red-silver.png"
+      },
+      {
+        "id": "heart-031-cyan-pearl",
+        "name": "Cyan / Pearl Heart",
+        "path": "icons/heart-031-cyan-pearl.png"
+      },
+      {
+        "id": "heart-032-cyan-ruby",
+        "name": "Cyan / Ruby Heart",
+        "path": "icons/heart-032-cyan-ruby.png"
+      },
+      {
+        "id": "heart-033-cyan-pink",
+        "name": "Cyan / Pink Heart",
+        "path": "icons/heart-033-cyan-pink.png"
+      },
+      {
+        "id": "heart-034-cyan-aqua",
+        "name": "Cyan / Aqua Heart",
+        "path": "icons/heart-034-cyan-aqua.png"
+      },
+      {
+        "id": "heart-035-cyan-cobalt",
+        "name": "Cyan / Cobalt Heart",
+        "path": "icons/heart-035-cyan-cobalt.png"
+      },
+      {
+        "id": "heart-036-cyan-lime",
+        "name": "Cyan / Lime Heart",
+        "path": "icons/heart-036-cyan-lime.png"
+      },
+      {
+        "id": "heart-037-cyan-gold",
+        "name": "Cyan / Gold Heart",
+        "path": "icons/heart-037-cyan-gold.png"
+      },
+      {
+        "id": "heart-038-cyan-violet",
+        "name": "Cyan / Violet Heart",
+        "path": "icons/heart-038-cyan-violet.png"
+      },
+      {
+        "id": "heart-039-cyan-obsidian",
+        "name": "Cyan / Obsidian Heart",
+        "path": "icons/heart-039-cyan-obsidian.png"
+      },
+      {
+        "id": "heart-040-cyan-silver",
+        "name": "Cyan / Silver Heart",
+        "path": "icons/heart-040-cyan-silver.png"
+      },
+      {
+        "id": "heart-041-blue-pearl",
+        "name": "Blue / Pearl Heart",
+        "path": "icons/heart-041-blue-pearl.png"
+      },
+      {
+        "id": "heart-042-blue-ruby",
+        "name": "Blue / Ruby Heart",
+        "path": "icons/heart-042-blue-ruby.png"
+      },
+      {
+        "id": "heart-043-blue-pink",
+        "name": "Blue / Pink Heart",
+        "path": "icons/heart-043-blue-pink.png"
+      },
+      {
+        "id": "heart-044-blue-aqua",
+        "name": "Blue / Aqua Heart",
+        "path": "icons/heart-044-blue-aqua.png"
+      },
+      {
+        "id": "heart-045-blue-cobalt",
+        "name": "Blue / Cobalt Heart",
+        "path": "icons/heart-045-blue-cobalt.png"
+      },
+      {
+        "id": "heart-046-blue-lime",
+        "name": "Blue / Lime Heart",
+        "path": "icons/heart-046-blue-lime.png"
+      },
+      {
+        "id": "heart-047-blue-gold",
+        "name": "Blue / Gold Heart",
+        "path": "icons/heart-047-blue-gold.png"
+      },
+      {
+        "id": "heart-048-blue-violet",
+        "name": "Blue / Violet Heart",
+        "path": "icons/heart-048-blue-violet.png"
+      },
+      {
+        "id": "heart-049-blue-obsidian",
+        "name": "Blue / Obsidian Heart",
+        "path": "icons/heart-049-blue-obsidian.png"
+      },
+      {
+        "id": "heart-050-blue-silver",
+        "name": "Blue / Silver Heart",
+        "path": "icons/heart-050-blue-silver.png"
+      },
+      {
+        "id": "heart-051-lime-pearl",
+        "name": "Lime / Pearl Heart",
+        "path": "icons/heart-051-lime-pearl.png"
+      },
+      {
+        "id": "heart-052-lime-ruby",
+        "name": "Lime / Ruby Heart",
+        "path": "icons/heart-052-lime-ruby.png"
+      },
+      {
+        "id": "heart-053-lime-pink",
+        "name": "Lime / Pink Heart",
+        "path": "icons/heart-053-lime-pink.png"
+      },
+      {
+        "id": "heart-054-lime-aqua",
+        "name": "Lime / Aqua Heart",
+        "path": "icons/heart-054-lime-aqua.png"
+      },
+      {
+        "id": "heart-055-lime-cobalt",
+        "name": "Lime / Cobalt Heart",
+        "path": "icons/heart-055-lime-cobalt.png"
+      },
+      {
+        "id": "heart-056-lime-lime",
+        "name": "Lime / Lime Heart",
+        "path": "icons/heart-056-lime-lime.png"
+      },
+      {
+        "id": "heart-057-lime-gold",
+        "name": "Lime / Gold Heart",
+        "path": "icons/heart-057-lime-gold.png"
+      },
+      {
+        "id": "heart-058-lime-violet",
+        "name": "Lime / Violet Heart",
+        "path": "icons/heart-058-lime-violet.png"
+      },
+      {
+        "id": "heart-059-lime-obsidian",
+        "name": "Lime / Obsidian Heart",
+        "path": "icons/heart-059-lime-obsidian.png"
+      },
+      {
+        "id": "heart-060-lime-silver",
+        "name": "Lime / Silver Heart",
+        "path": "icons/heart-060-lime-silver.png"
+      },
+      {
+        "id": "heart-061-yellow-pearl",
+        "name": "Yellow / Pearl Heart",
+        "path": "icons/heart-061-yellow-pearl.png"
+      },
+      {
+        "id": "heart-062-yellow-ruby",
+        "name": "Yellow / Ruby Heart",
+        "path": "icons/heart-062-yellow-ruby.png"
+      },
+      {
+        "id": "heart-063-yellow-pink",
+        "name": "Yellow / Pink Heart",
+        "path": "icons/heart-063-yellow-pink.png"
+      },
+      {
+        "id": "heart-064-yellow-aqua",
+        "name": "Yellow / Aqua Heart",
+        "path": "icons/heart-064-yellow-aqua.png"
+      },
+      {
+        "id": "heart-065-yellow-cobalt",
+        "name": "Yellow / Cobalt Heart",
+        "path": "icons/heart-065-yellow-cobalt.png"
+      },
+      {
+        "id": "heart-066-yellow-lime",
+        "name": "Yellow / Lime Heart",
+        "path": "icons/heart-066-yellow-lime.png"
+      },
+      {
+        "id": "heart-067-yellow-gold",
+        "name": "Yellow / Gold Heart",
+        "path": "icons/heart-067-yellow-gold.png"
+      },
+      {
+        "id": "heart-068-yellow-violet",
+        "name": "Yellow / Violet Heart",
+        "path": "icons/heart-068-yellow-violet.png"
+      },
+      {
+        "id": "heart-069-yellow-obsidian",
+        "name": "Yellow / Obsidian Heart",
+        "path": "icons/heart-069-yellow-obsidian.png"
+      },
+      {
+        "id": "heart-070-yellow-silver",
+        "name": "Yellow / Silver Heart",
+        "path": "icons/heart-070-yellow-silver.png"
+      },
+      {
+        "id": "heart-071-purple-pearl",
+        "name": "Purple / Pearl Heart",
+        "path": "icons/heart-071-purple-pearl.png"
+      },
+      {
+        "id": "heart-072-purple-ruby",
+        "name": "Purple / Ruby Heart",
+        "path": "icons/heart-072-purple-ruby.png"
+      },
+      {
+        "id": "heart-073-purple-pink",
+        "name": "Purple / Pink Heart",
+        "path": "icons/heart-073-purple-pink.png"
+      },
+      {
+        "id": "heart-074-purple-aqua",
+        "name": "Purple / Aqua Heart",
+        "path": "icons/heart-074-purple-aqua.png"
+      },
+      {
+        "id": "heart-075-purple-cobalt",
+        "name": "Purple / Cobalt Heart",
+        "path": "icons/heart-075-purple-cobalt.png"
+      },
+      {
+        "id": "heart-076-purple-lime",
+        "name": "Purple / Lime Heart",
+        "path": "icons/heart-076-purple-lime.png"
+      },
+      {
+        "id": "heart-077-purple-gold",
+        "name": "Purple / Gold Heart",
+        "path": "icons/heart-077-purple-gold.png"
+      },
+      {
+        "id": "heart-078-purple-violet",
+        "name": "Purple / Violet Heart",
+        "path": "icons/heart-078-purple-violet.png"
+      },
+      {
+        "id": "heart-079-purple-obsidian",
+        "name": "Purple / Obsidian Heart",
+        "path": "icons/heart-079-purple-obsidian.png"
+      },
+      {
+        "id": "heart-080-purple-silver",
+        "name": "Purple / Silver Heart",
+        "path": "icons/heart-080-purple-silver.png"
+      },
+      {
+        "id": "heart-081-white-pearl",
+        "name": "White / Pearl Heart",
+        "path": "icons/heart-081-white-pearl.png"
+      },
+      {
+        "id": "heart-082-white-ruby",
+        "name": "White / Ruby Heart",
+        "path": "icons/heart-082-white-ruby.png"
+      },
+      {
+        "id": "heart-083-white-pink",
+        "name": "White / Pink Heart",
+        "path": "icons/heart-083-white-pink.png"
+      },
+      {
+        "id": "heart-084-white-aqua",
+        "name": "White / Aqua Heart",
+        "path": "icons/heart-084-white-aqua.png"
+      },
+      {
+        "id": "heart-085-white-cobalt",
+        "name": "White / Cobalt Heart",
+        "path": "icons/heart-085-white-cobalt.png"
+      },
+      {
+        "id": "heart-086-white-lime",
+        "name": "White / Lime Heart",
+        "path": "icons/heart-086-white-lime.png"
+      },
+      {
+        "id": "heart-087-white-gold",
+        "name": "White / Gold Heart",
+        "path": "icons/heart-087-white-gold.png"
+      },
+      {
+        "id": "heart-088-white-violet",
+        "name": "White / Violet Heart",
+        "path": "icons/heart-088-white-violet.png"
+      },
+      {
+        "id": "heart-089-white-obsidian",
+        "name": "White / Obsidian Heart",
+        "path": "icons/heart-089-white-obsidian.png"
+      },
+      {
+        "id": "heart-090-white-silver",
+        "name": "White / Silver Heart",
+        "path": "icons/heart-090-white-silver.png"
+      },
+      {
+        "id": "heart-091-grey-pearl",
+        "name": "Grey / Pearl Heart",
+        "path": "icons/heart-091-grey-pearl.png"
+      },
+      {
+        "id": "heart-092-grey-ruby",
+        "name": "Grey / Ruby Heart",
+        "path": "icons/heart-092-grey-ruby.png"
+      },
+      {
+        "id": "heart-093-grey-pink",
+        "name": "Grey / Pink Heart",
+        "path": "icons/heart-093-grey-pink.png"
+      },
+      {
+        "id": "heart-094-grey-aqua",
+        "name": "Grey / Aqua Heart",
+        "path": "icons/heart-094-grey-aqua.png"
+      },
+      {
+        "id": "heart-095-grey-cobalt",
+        "name": "Grey / Cobalt Heart",
+        "path": "icons/heart-095-grey-cobalt.png"
+      },
+      {
+        "id": "heart-096-grey-lime",
+        "name": "Grey / Lime Heart",
+        "path": "icons/heart-096-grey-lime.png"
+      },
+      {
+        "id": "heart-097-grey-gold",
+        "name": "Grey / Gold Heart",
+        "path": "icons/heart-097-grey-gold.png"
+      },
+      {
+        "id": "heart-098-grey-violet",
+        "name": "Grey / Violet Heart",
+        "path": "icons/heart-098-grey-violet.png"
+      },
+      {
+        "id": "heart-099-grey-obsidian",
+        "name": "Grey / Obsidian Heart",
+        "path": "icons/heart-099-grey-obsidian.png"
+      },
+      {
+        "id": "heart-100-grey-silver",
+        "name": "Grey / Silver Heart",
+        "path": "icons/heart-100-grey-silver.png"
+      },
+      {
+        "id": "heart-101-peach-pearl",
+        "name": "Peach / Pearl Heart",
+        "path": "icons/heart-101-peach-pearl.png"
+      },
+      {
+        "id": "heart-102-peach-ruby",
+        "name": "Peach / Ruby Heart",
+        "path": "icons/heart-102-peach-ruby.png"
+      },
+      {
+        "id": "heart-103-peach-pink",
+        "name": "Peach / Pink Heart",
+        "path": "icons/heart-103-peach-pink.png"
+      },
+      {
+        "id": "heart-104-peach-aqua",
+        "name": "Peach / Aqua Heart",
+        "path": "icons/heart-104-peach-aqua.png"
+      },
+      {
+        "id": "heart-105-peach-cobalt",
+        "name": "Peach / Cobalt Heart",
+        "path": "icons/heart-105-peach-cobalt.png"
+      },
+      {
+        "id": "heart-106-peach-lime",
+        "name": "Peach / Lime Heart",
+        "path": "icons/heart-106-peach-lime.png"
+      },
+      {
+        "id": "heart-107-peach-gold",
+        "name": "Peach / Gold Heart",
+        "path": "icons/heart-107-peach-gold.png"
+      },
+      {
+        "id": "heart-108-peach-violet",
+        "name": "Peach / Violet Heart",
+        "path": "icons/heart-108-peach-violet.png"
+      },
+      {
+        "id": "heart-109-peach-obsidian",
+        "name": "Peach / Obsidian Heart",
+        "path": "icons/heart-109-peach-obsidian.png"
+      },
+      {
+        "id": "heart-110-peach-silver",
+        "name": "Peach / Silver Heart",
+        "path": "icons/heart-110-peach-silver.png"
+      },
+      {
+        "id": "heart-111-orange-pearl",
+        "name": "Orange / Pearl Heart",
+        "path": "icons/heart-111-orange-pearl.png"
+      },
+      {
+        "id": "heart-112-orange-ruby",
+        "name": "Orange / Ruby Heart",
+        "path": "icons/heart-112-orange-ruby.png"
+      },
+      {
+        "id": "heart-113-orange-pink",
+        "name": "Orange / Pink Heart",
+        "path": "icons/heart-113-orange-pink.png"
+      },
+      {
+        "id": "heart-114-orange-aqua",
+        "name": "Orange / Aqua Heart",
+        "path": "icons/heart-114-orange-aqua.png"
+      },
+      {
+        "id": "heart-115-orange-cobalt",
+        "name": "Orange / Cobalt Heart",
+        "path": "icons/heart-115-orange-cobalt.png"
+      },
+      {
+        "id": "heart-116-orange-lime",
+        "name": "Orange / Lime Heart",
+        "path": "icons/heart-116-orange-lime.png"
+      },
+      {
+        "id": "heart-117-orange-gold",
+        "name": "Orange / Gold Heart",
+        "path": "icons/heart-117-orange-gold.png"
+      },
+      {
+        "id": "heart-118-orange-violet",
+        "name": "Orange / Violet Heart",
+        "path": "icons/heart-118-orange-violet.png"
+      },
+      {
+        "id": "heart-119-orange-obsidian",
+        "name": "Orange / Obsidian Heart",
+        "path": "icons/heart-119-orange-obsidian.png"
+      },
+      {
+        "id": "heart-120-orange-silver",
+        "name": "Orange / Silver Heart",
+        "path": "icons/heart-120-orange-silver.png"
+      },
+      {
+        "id": "heart-121-teal-pearl",
+        "name": "Teal / Pearl Heart",
+        "path": "icons/heart-121-teal-pearl.png"
+      },
+      {
+        "id": "heart-122-teal-ruby",
+        "name": "Teal / Ruby Heart",
+        "path": "icons/heart-122-teal-ruby.png"
+      },
+      {
+        "id": "heart-123-teal-pink",
+        "name": "Teal / Pink Heart",
+        "path": "icons/heart-123-teal-pink.png"
+      },
+      {
+        "id": "heart-124-teal-aqua",
+        "name": "Teal / Aqua Heart",
+        "path": "icons/heart-124-teal-aqua.png"
+      },
+      {
+        "id": "heart-125-teal-cobalt",
+        "name": "Teal / Cobalt Heart",
+        "path": "icons/heart-125-teal-cobalt.png"
+      },
+      {
+        "id": "heart-126-teal-lime",
+        "name": "Teal / Lime Heart",
+        "path": "icons/heart-126-teal-lime.png"
+      },
+      {
+        "id": "heart-127-teal-gold",
+        "name": "Teal / Gold Heart",
+        "path": "icons/heart-127-teal-gold.png"
+      },
+      {
+        "id": "heart-128-teal-violet",
+        "name": "Teal / Violet Heart",
+        "path": "icons/heart-128-teal-violet.png"
+      },
+      {
+        "id": "heart-129-teal-obsidian",
+        "name": "Teal / Obsidian Heart",
+        "path": "icons/heart-129-teal-obsidian.png"
+      },
+      {
+        "id": "heart-130-teal-silver",
+        "name": "Teal / Silver Heart",
+        "path": "icons/heart-130-teal-silver.png"
+      },
+      {
+        "id": "heart-131-midnight-pearl",
+        "name": "Midnight / Pearl Heart",
+        "path": "icons/heart-131-midnight-pearl.png"
+      },
+      {
+        "id": "heart-132-midnight-ruby",
+        "name": "Midnight / Ruby Heart",
+        "path": "icons/heart-132-midnight-ruby.png"
+      },
+      {
+        "id": "heart-133-midnight-pink",
+        "name": "Midnight / Pink Heart",
+        "path": "icons/heart-133-midnight-pink.png"
+      },
+      {
+        "id": "heart-134-midnight-aqua",
+        "name": "Midnight / Aqua Heart",
+        "path": "icons/heart-134-midnight-aqua.png"
+      },
+      {
+        "id": "heart-135-midnight-cobalt",
+        "name": "Midnight / Cobalt Heart",
+        "path": "icons/heart-135-midnight-cobalt.png"
+      },
+      {
+        "id": "heart-136-midnight-lime",
+        "name": "Midnight / Lime Heart",
+        "path": "icons/heart-136-midnight-lime.png"
+      },
+      {
+        "id": "heart-137-midnight-gold",
+        "name": "Midnight / Gold Heart",
+        "path": "icons/heart-137-midnight-gold.png"
+      },
+      {
+        "id": "heart-138-midnight-violet",
+        "name": "Midnight / Violet Heart",
+        "path": "icons/heart-138-midnight-violet.png"
+      },
+      {
+        "id": "heart-139-midnight-obsidian",
+        "name": "Midnight / Obsidian Heart",
+        "path": "icons/heart-139-midnight-obsidian.png"
+      },
+      {
+        "id": "heart-140-midnight-silver",
+        "name": "Midnight / Silver Heart",
+        "path": "icons/heart-140-midnight-silver.png"
+      }
+    ],
+    "sounds": []
+  },
+  "coverImage": "cover.png",
+  "createdWith": "evox-deck-v2",
+  "createdAt": "2026-10-21T22:39:20.394073Z"
+}

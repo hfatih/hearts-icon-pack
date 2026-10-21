@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hearts Icon Pack — Canlı 3D Galeri & Simülatör</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0b11;
+      --card-bg: rgba(25, 23, 35, 0.7);
+      --card-border: rgba(255, 105, 180, 0.15);
+      --card-border-hover: rgba(255, 105, 180, 0.5);
+      --text: #ffffff;
+      --text-muted: #8e8b9f;
+      --pink: #ff388c;
+      --pink-glow: rgba(255, 56, 140, 0.35);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #1f1426 0%, #0c0b11 65%);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 30px 20px 80px;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 56, 140, 0.15);
+      border: 1px solid rgba(255, 56, 140, 0.4);
+      color: #ff7ebb;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #ffffff 40%, #ff85be 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    
+    /* Simulator */
+    .simulator-box {
+      background: rgba(20, 18, 28, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .deck-frame {
+      background: #141318;
+      border: 3px solid #23212c;
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(5, 76px);
+      gap: 12px;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .deck-key {
+      width: 76px;
+      height: 76px;
+      background: #0d0c10;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .deck-key:hover {
+      transform: translateY(-2px);
+      border-color: var(--pink);
+      box-shadow: 0 0 15px var(--pink-glow);
+    }
+    .deck-key img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .deck-hint {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .search-bar {
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 14px 20px;
+      background: rgba(25, 23, 35, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 20px var(--pink-glow);
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ccc;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--pink);
+      border-color: var(--pink);
+      color: #fff;
+      box-shadow: 0 4px 15px var(--pink-glow);
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+    }
+    .card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--card-border-hover);
+      box-shadow: 0 10px 25px rgba(255, 56, 140, 0.2);
+    }
+    .card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+    }
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    .card-slug {
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(255, 56, 140, 0.95);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">✦ 140 Saf 3D Kalp İkonu &bull; VivreMotion Stili</div>
+      <h1>Hearts Icon Pack</h1>
+      <p class="subtitle">14 farklı zengin parlak cam taban rengi ve 10 kabarık jel kalp rengiyle üretilmiş 140 adet saf 3D kalp ikonu.</p>
+    </header>
+
+    <!-- Simulator -->
+    <div class="simulator-box">
+      <div class="deck-frame" id="deckFrame">
+        <!-- 15 keys (3x5) -->
+      </div>
+      <div class="deck-hint">Herhangi bir kalbe tıklayarak Stream Deck tuşlarını doldurabilir ve kopyalayabilirsiniz!</div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-bar">
+        <input type="text" id="searchInput" class="search-input" placeholder="Renk adına göre ara... (örneğin: pink, black, red, cyan, lime, pearl...)">
+      </div>
+      <div class="filters" id="filterContainer">
+        <button class="filter-btn active" data-filter="all">Tümü (140)</button>
+        <button class="filter-btn" data-filter="pink">Pink</button>
+        <button class="filter-btn" data-filter="black">Black</button>
+        <button class="filter-btn" data-filter="red">Red</button>
+        <button class="filter-btn" data-filter="cyan">Cyan</button>
+        <button class="filter-btn" data-filter="blue">Blue</button>
+        <button class="filter-btn" data-filter="lime">Lime</button>
+        <button class="filter-btn" data-filter="yellow">Yellow</button>
+        <button class="filter-btn" data-filter="purple">Purple</button>
+        <button class="filter-btn" data-filter="white">White</button>
+        <button class="filter-btn" data-filter="grey">Grey</button>
+        <button class="filter-btn" data-filter="peach">Peach</button>
+        <button class="filter-btn" data-filter="orange">Orange</button>
+        <button class="filter-btn" data-filter="teal">Teal</button>
+        <button class="filter-btn" data-filter="midnight">Midnight</button>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid" id="iconGrid">
+      <div class="card" data-base="pink" data-heart="pearl" data-name="pink / pearl pink pearl" onclick="selectHeart('heart-001-pink-pearl.png', 'Pink / Pearl')">
+        <img src="icons/heart-001-pink-pearl.png" loading="lazy" alt="Pink / Pearl">
+        <div class="card-title">Pink / Pearl</div>
+        <div class="card-slug">#001 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="ruby" data-name="pink / ruby pink ruby" onclick="selectHeart('heart-002-pink-ruby.png', 'Pink / Ruby')">
+        <img src="icons/heart-002-pink-ruby.png" loading="lazy" alt="Pink / Ruby">
+        <div class="card-title">Pink / Ruby</div>
+        <div class="card-slug">#002 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="pink" data-name="pink / pink pink pink" onclick="selectHeart('heart-003-pink-pink.png', 'Pink / Pink')">
+        <img src="icons/heart-003-pink-pink.png" loading="lazy" alt="Pink / Pink">
+        <div class="card-title">Pink / Pink</div>
+        <div class="card-slug">#003 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="aqua" data-name="pink / aqua pink aqua" onclick="selectHeart('heart-004-pink-aqua.png', 'Pink / Aqua')">
+        <img src="icons/heart-004-pink-aqua.png" loading="lazy" alt="Pink / Aqua">
+        <div class="card-title">Pink / Aqua</div>
+        <div class="card-slug">#004 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="cobalt" data-name="pink / cobalt pink cobalt" onclick="selectHeart('heart-005-pink-cobalt.png', 'Pink / Cobalt')">
+        <img src="icons/heart-005-pink-cobalt.png" loading="lazy" alt="Pink / Cobalt">
+        <div class="card-title">Pink / Cobalt</div>
+        <div class="card-slug">#005 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="lime" data-name="pink / lime pink lime" onclick="selectHeart('heart-006-pink-lime.png', 'Pink / Lime')">
+        <img src="icons/heart-006-pink-lime.png" loading="lazy" alt="Pink / Lime">
+        <div class="card-title">Pink / Lime</div>
+        <div class="card-slug">#006 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="gold" data-name="pink / gold pink gold" onclick="selectHeart('heart-007-pink-gold.png', 'Pink / Gold')">
+        <img src="icons/heart-007-pink-gold.png" loading="lazy" alt="Pink / Gold">
+        <div class="card-title">Pink / Gold</div>
+        <div class="card-slug">#007 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="violet" data-name="pink / violet pink violet" onclick="selectHeart('heart-008-pink-violet.png', 'Pink / Violet')">
+        <img src="icons/heart-008-pink-violet.png" loading="lazy" alt="Pink / Violet">
+        <div class="card-title">Pink / Violet</div>
+        <div class="card-slug">#008 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="obsidian" data-name="pink / obsidian pink obsidian" onclick="selectHeart('heart-009-pink-obsidian.png', 'Pink / Obsidian')">
+        <img src="icons/heart-009-pink-obsidian.png" loading="lazy" alt="Pink / Obsidian">
+        <div class="card-title">Pink / Obsidian</div>
+        <div class="card-slug">#009 &bull; pink</div>
+      </div>
+      <div class="card" data-base="pink" data-heart="silver" data-name="pink / silver pink silver" onclick="selectHeart('heart-010-pink-silver.png', 'Pink / Silver')">
+        <img src="icons/heart-010-pink-silver.png" loading="lazy" alt="Pink / Silver">
+        <div class="card-title">Pink / Silver</div>
+        <div class="card-slug">#010 &bull; pink</div>
+      </div>
+      <div class="card" data-base="black" data-heart="pearl" data-name="black / pearl black pearl" onclick="selectHeart('heart-011-black-pearl.png', 'Black / Pearl')">
+        <img src="icons/heart-011-black-pearl.png" loading="lazy" alt="Black / Pearl">
+        <div class="card-title">Black / Pearl</div>
+        <div class="card-slug">#011 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="ruby" data-name="black / ruby black ruby" onclick="selectHeart('heart-012-black-ruby.png', 'Black / Ruby')">
+        <img src="icons/heart-012-black-ruby.png" loading="lazy" alt="Black / Ruby">
+        <div class="card-title">Black / Ruby</div>
+        <div class="card-slug">#012 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="pink" data-name="black / pink black pink" onclick="selectHeart('heart-013-black-pink.png', 'Black / Pink')">
+        <img src="icons/heart-013-black-pink.png" loading="lazy" alt="Black / Pink">
+        <div class="card-title">Black / Pink</div>
+        <div class="card-slug">#013 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="aqua" data-name="black / aqua black aqua" onclick="selectHeart('heart-014-black-aqua.png', 'Black / Aqua')">
+        <img src="icons/heart-014-black-aqua.png" loading="lazy" alt="Black / Aqua">
+        <div class="card-title">Black / Aqua</div>
+        <div class="card-slug">#014 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="cobalt" data-name="black / cobalt black cobalt" onclick="selectHeart('heart-015-black-cobalt.png', 'Black / Cobalt')">
+        <img src="icons/heart-015-black-cobalt.png" loading="lazy" alt="Black / Cobalt">
+        <div class="card-title">Black / Cobalt</div>
+        <div class="card-slug">#015 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="lime" data-name="black / lime black lime" onclick="selectHeart('heart-016-black-lime.png', 'Black / Lime')">
+        <img src="icons/heart-016-black-lime.png" loading="lazy" alt="Black / Lime">
+        <div class="card-title">Black / Lime</div>
+        <div class="card-slug">#016 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="gold" data-name="black / gold black gold" onclick="selectHeart('heart-017-black-gold.png', 'Black / Gold')">
+        <img src="icons/heart-017-black-gold.png" loading="lazy" alt="Black / Gold">
+        <div class="card-title">Black / Gold</div>
+        <div class="card-slug">#017 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="violet" data-name="black / violet black violet" onclick="selectHeart('heart-018-black-violet.png', 'Black / Violet')">
+        <img src="icons/heart-018-black-violet.png" loading="lazy" alt="Black / Violet">
+        <div class="card-title">Black / Violet</div>
+        <div class="card-slug">#018 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="obsidian" data-name="black / obsidian black obsidian" onclick="selectHeart('heart-019-black-obsidian.png', 'Black / Obsidian')">
+        <img src="icons/heart-019-black-obsidian.png" loading="lazy" alt="Black / Obsidian">
+        <div class="card-title">Black / Obsidian</div>
+        <div class="card-slug">#019 &bull; black</div>
+      </div>
+      <div class="card" data-base="black" data-heart="silver" data-name="black / silver black silver" onclick="selectHeart('heart-020-black-silver.png', 'Black / Silver')">
+        <img src="icons/heart-020-black-silver.png" loading="lazy" alt="Black / Silver">
+        <div class="card-title">Black / Silver</div>
+        <div class="card-slug">#020 &bull; black</div>
+      </div>
+      <div class="card" data-base="red" data-heart="pearl" data-name="red / pearl red pearl" onclick="selectHeart('heart-021-red-pearl.png', 'Red / Pearl')">
+        <img src="icons/heart-021-red-pearl.png" loading="lazy" alt="Red / Pearl">
+        <div class="card-title">Red / Pearl</div>
+        <div class="card-slug">#021 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="ruby" data-name="red / ruby red ruby" onclick="selectHeart('heart-022-red-ruby.png', 'Red / Ruby')">
+        <img src="icons/heart-022-red-ruby.png" loading="lazy" alt="Red / Ruby">
+        <div class="card-title">Red / Ruby</div>
+        <div class="card-slug">#022 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="pink" data-name="red / pink red pink" onclick="selectHeart('heart-023-red-pink.png', 'Red / Pink')">
+        <img src="icons/heart-023-red-pink.png" loading="lazy" alt="Red / Pink">
+        <div class="card-title">Red / Pink</div>
+        <div class="card-slug">#023 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="aqua" data-name="red / aqua red aqua" onclick="selectHeart('heart-024-red-aqua.png', 'Red / Aqua')">
+        <img src="icons/heart-024-red-aqua.png" loading="lazy" alt="Red / Aqua">
+        <div class="card-title">Red / Aqua</div>
+        <div class="card-slug">#024 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="cobalt" data-name="red / cobalt red cobalt" onclick="selectHeart('heart-025-red-cobalt.png', 'Red / Cobalt')">
+        <img src="icons/heart-025-red-cobalt.png" loading="lazy" alt="Red / Cobalt">
+        <div class="card-title">Red / Cobalt</div>
+        <div class="card-slug">#025 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="lime" data-name="red / lime red lime" onclick="selectHeart('heart-026-red-lime.png', 'Red / Lime')">
+        <img src="icons/heart-026-red-lime.png" loading="lazy" alt="Red / Lime">
+        <div class="card-title">Red / Lime</div>
+        <div class="card-slug">#026 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="gold" data-name="red / gold red gold" onclick="selectHeart('heart-027-red-gold.png', 'Red / Gold')">
+        <img src="icons/heart-027-red-gold.png" loading="lazy" alt="Red / Gold">
+        <div class="card-title">Red / Gold</div>
+        <div class="card-slug">#027 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="violet" data-name="red / violet red violet" onclick="selectHeart('heart-028-red-violet.png', 'Red / Violet')">
+        <img src="icons/heart-028-red-violet.png" loading="lazy" alt="Red / Violet">
+        <div class="card-title">Red / Violet</div>
+        <div class="card-slug">#028 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="obsidian" data-name="red / obsidian red obsidian" onclick="selectHeart('heart-029-red-obsidian.png', 'Red / Obsidian')">
+        <img src="icons/heart-029-red-obsidian.png" loading="lazy" alt="Red / Obsidian">
+        <div class="card-title">Red / Obsidian</div>
+        <div class="card-slug">#029 &bull; red</div>
+      </div>
+      <div class="card" data-base="red" data-heart="silver" data-name="red / silver red silver" onclick="selectHeart('heart-030-red-silver.png', 'Red / Silver')">
+        <img src="icons/heart-030-red-silver.png" loading="lazy" alt="Red / Silver">
+        <div class="card-title">Red / Silver</div>
+        <div class="card-slug">#030 &bull; red</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="pearl" data-name="cyan / pearl cyan pearl" onclick="selectHeart('heart-031-cyan-pearl.png', 'Cyan / Pearl')">
+        <img src="icons/heart-031-cyan-pearl.png" loading="lazy" alt="Cyan / Pearl">
+        <div class="card-title">Cyan / Pearl</div>
+        <div class="card-slug">#031 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="ruby" data-name="cyan / ruby cyan ruby" onclick="selectHeart('heart-032-cyan-ruby.png', 'Cyan / Ruby')">
+        <img src="icons/heart-032-cyan-ruby.png" loading="lazy" alt="Cyan / Ruby">
+        <div class="card-title">Cyan / Ruby</div>
+        <div class="card-slug">#032 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="pink" data-name="cyan / pink cyan pink" onclick="selectHeart('heart-033-cyan-pink.png', 'Cyan / Pink')">
+        <img src="icons/heart-033-cyan-pink.png" loading="lazy" alt="Cyan / Pink">
+        <div class="card-title">Cyan / Pink</div>
+        <div class="card-slug">#033 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="aqua" data-name="cyan / aqua cyan aqua" onclick="selectHeart('heart-034-cyan-aqua.png', 'Cyan / Aqua')">
+        <img src="icons/heart-034-cyan-aqua.png" loading="lazy" alt="Cyan / Aqua">
+        <div class="card-title">Cyan / Aqua</div>
+        <div class="card-slug">#034 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="cobalt" data-name="cyan / cobalt cyan cobalt" onclick="selectHeart('heart-035-cyan-cobalt.png', 'Cyan / Cobalt')">
+        <img src="icons/heart-035-cyan-cobalt.png" loading="lazy" alt="Cyan / Cobalt">
+        <div class="card-title">Cyan / Cobalt</div>
+        <div class="card-slug">#035 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="lime" data-name="cyan / lime cyan lime" onclick="selectHeart('heart-036-cyan-lime.png', 'Cyan / Lime')">
+        <img src="icons/heart-036-cyan-lime.png" loading="lazy" alt="Cyan / Lime">
+        <div class="card-title">Cyan / Lime</div>
+        <div class="card-slug">#036 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="gold" data-name="cyan / gold cyan gold" onclick="selectHeart('heart-037-cyan-gold.png', 'Cyan / Gold')">
+        <img src="icons/heart-037-cyan-gold.png" loading="lazy" alt="Cyan / Gold">
+        <div class="card-title">Cyan / Gold</div>
+        <div class="card-slug">#037 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="violet" data-name="cyan / violet cyan violet" onclick="selectHeart('heart-038-cyan-violet.png', 'Cyan / Violet')">
+        <img src="icons/heart-038-cyan-violet.png" loading="lazy" alt="Cyan / Violet">
+        <div class="card-title">Cyan / Violet</div>
+        <div class="card-slug">#038 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="obsidian" data-name="cyan / obsidian cyan obsidian" onclick="selectHeart('heart-039-cyan-obsidian.png', 'Cyan / Obsidian')">
+        <img src="icons/heart-039-cyan-obsidian.png" loading="lazy" alt="Cyan / Obsidian">
+        <div class="card-title">Cyan / Obsidian</div>
+        <div class="card-slug">#039 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="cyan" data-heart="silver" data-name="cyan / silver cyan silver" onclick="selectHeart('heart-040-cyan-silver.png', 'Cyan / Silver')">
+        <img src="icons/heart-040-cyan-silver.png" loading="lazy" alt="Cyan / Silver">
+        <div class="card-title">Cyan / Silver</div>
+        <div class="card-slug">#040 &bull; cyan</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="pearl" data-name="blue / pearl blue pearl" onclick="selectHeart('heart-041-blue-pearl.png', 'Blue / Pearl')">
+        <img src="icons/heart-041-blue-pearl.png" loading="lazy" alt="Blue / Pearl">
+        <div class="card-title">Blue / Pearl</div>
+        <div class="card-slug">#041 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="ruby" data-name="blue / ruby blue ruby" onclick="selectHeart('heart-042-blue-ruby.png', 'Blue / Ruby')">
+        <img src="icons/heart-042-blue-ruby.png" loading="lazy" alt="Blue / Ruby">
+        <div class="card-title">Blue / Ruby</div>
+        <div class="card-slug">#042 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="pink" data-name="blue / pink blue pink" onclick="selectHeart('heart-043-blue-pink.png', 'Blue / Pink')">
+        <img src="icons/heart-043-blue-pink.png" loading="lazy" alt="Blue / Pink">
+        <div class="card-title">Blue / Pink</div>
+        <div class="card-slug">#043 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="aqua" data-name="blue / aqua blue aqua" onclick="selectHeart('heart-044-blue-aqua.png', 'Blue / Aqua')">
+        <img src="icons/heart-044-blue-aqua.png" loading="lazy" alt="Blue / Aqua">
+        <div class="card-title">Blue / Aqua</div>
+        <div class="card-slug">#044 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="cobalt" data-name="blue / cobalt blue cobalt" onclick="selectHeart('heart-045-blue-cobalt.png', 'Blue / Cobalt')">
+        <img src="icons/heart-045-blue-cobalt.png" loading="lazy" alt="Blue / Cobalt">
+        <div class="card-title">Blue / Cobalt</div>
+        <div class="card-slug">#045 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="lime" data-name="blue / lime blue lime" onclick="selectHeart('heart-046-blue-lime.png', 'Blue / Lime')">
+        <img src="icons/heart-046-blue-lime.png" loading="lazy" alt="Blue / Lime">
+        <div class="card-title">Blue / Lime</div>
+        <div class="card-slug">#046 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="gold" data-name="blue / gold blue gold" onclick="selectHeart('heart-047-blue-gold.png', 'Blue / Gold')">
+        <img src="icons/heart-047-blue-gold.png" loading="lazy" alt="Blue / Gold">
+        <div class="card-title">Blue / Gold</div>
+        <div class="card-slug">#047 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="violet" data-name="blue / violet blue violet" onclick="selectHeart('heart-048-blue-violet.png', 'Blue / Violet')">
+        <img src="icons/heart-048-blue-violet.png" loading="lazy" alt="Blue / Violet">
+        <div class="card-title">Blue / Violet</div>
+        <div class="card-slug">#048 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="obsidian" data-name="blue / obsidian blue obsidian" onclick="selectHeart('heart-049-blue-obsidian.png', 'Blue / Obsidian')">
+        <img src="icons/heart-049-blue-obsidian.png" loading="lazy" alt="Blue / Obsidian">
+        <div class="card-title">Blue / Obsidian</div>
+        <div class="card-slug">#049 &bull; blue</div>
+      </div>
+      <div class="card" data-base="blue" data-heart="silver" data-name="blue / silver blue silver" onclick="selectHeart('heart-050-blue-silver.png', 'Blue / Silver')">
+        <img src="icons/heart-050-blue-silver.png" loading="lazy" alt="Blue / Silver">
+        <div class="card-title">Blue / Silver</div>
+        <div class="card-slug">#050 &bull; blue</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="pearl" data-name="lime / pearl lime pearl" onclick="selectHeart('heart-051-lime-pearl.png', 'Lime / Pearl')">
+        <img src="icons/heart-051-lime-pearl.png" loading="lazy" alt="Lime / Pearl">
+        <div class="card-title">Lime / Pearl</div>
+        <div class="card-slug">#051 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="ruby" data-name="lime / ruby lime ruby" onclick="selectHeart('heart-052-lime-ruby.png', 'Lime / Ruby')">
+        <img src="icons/heart-052-lime-ruby.png" loading="lazy" alt="Lime / Ruby">
+        <div class="card-title">Lime / Ruby</div>
+        <div class="card-slug">#052 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="pink" data-name="lime / pink lime pink" onclick="selectHeart('heart-053-lime-pink.png', 'Lime / Pink')">
+        <img src="icons/heart-053-lime-pink.png" loading="lazy" alt="Lime / Pink">
+        <div class="card-title">Lime / Pink</div>
+        <div class="card-slug">#053 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="aqua" data-name="lime / aqua lime aqua" onclick="selectHeart('heart-054-lime-aqua.png', 'Lime / Aqua')">
+        <img src="icons/heart-054-lime-aqua.png" loading="lazy" alt="Lime / Aqua">
+        <div class="card-title">Lime / Aqua</div>
+        <div class="card-slug">#054 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="cobalt" data-name="lime / cobalt lime cobalt" onclick="selectHeart('heart-055-lime-cobalt.png', 'Lime / Cobalt')">
+        <img src="icons/heart-055-lime-cobalt.png" loading="lazy" alt="Lime / Cobalt">
+        <div class="card-title">Lime / Cobalt</div>
+        <div class="card-slug">#055 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="lime" data-name="lime / lime lime lime" onclick="selectHeart('heart-056-lime-lime.png', 'Lime / Lime')">
+        <img src="icons/heart-056-lime-lime.png" loading="lazy" alt="Lime / Lime">
+        <div class="card-title">Lime / Lime</div>
+        <div class="card-slug">#056 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="gold" data-name="lime / gold lime gold" onclick="selectHeart('heart-057-lime-gold.png', 'Lime / Gold')">
+        <img src="icons/heart-057-lime-gold.png" loading="lazy" alt="Lime / Gold">
+        <div class="card-title">Lime / Gold</div>
+        <div class="card-slug">#057 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="violet" data-name="lime / violet lime violet" onclick="selectHeart('heart-058-lime-violet.png', 'Lime / Violet')">
+        <img src="icons/heart-058-lime-violet.png" loading="lazy" alt="Lime / Violet">
+        <div class="card-title">Lime / Violet</div>
+        <div class="card-slug">#058 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="obsidian" data-name="lime / obsidian lime obsidian" onclick="selectHeart('heart-059-lime-obsidian.png', 'Lime / Obsidian')">
+        <img src="icons/heart-059-lime-obsidian.png" loading="lazy" alt="Lime / Obsidian">
+        <div class="card-title">Lime / Obsidian</div>
+        <div class="card-slug">#059 &bull; lime</div>
+      </div>
+      <div class="card" data-base="lime" data-heart="silver" data-name="lime / silver lime silver" onclick="selectHeart('heart-060-lime-silver.png', 'Lime / Silver')">
+        <img src="icons/heart-060-lime-silver.png" loading="lazy" alt="Lime / Silver">
+        <div class="card-title">Lime / Silver</div>
+        <div class="card-slug">#060 &bull; lime</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="pearl" data-name="yellow / pearl yellow pearl" onclick="selectHeart('heart-061-yellow-pearl.png', 'Yellow / Pearl')">
+        <img src="icons/heart-061-yellow-pearl.png" loading="lazy" alt="Yellow / Pearl">
+        <div class="card-title">Yellow / Pearl</div>
+        <div class="card-slug">#061 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="ruby" data-name="yellow / ruby yellow ruby" onclick="selectHeart('heart-062-yellow-ruby.png', 'Yellow / Ruby')">
+        <img src="icons/heart-062-yellow-ruby.png" loading="lazy" alt="Yellow / Ruby">
+        <div class="card-title">Yellow / Ruby</div>
+        <div class="card-slug">#062 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="pink" data-name="yellow / pink yellow pink" onclick="selectHeart('heart-063-yellow-pink.png', 'Yellow / Pink')">
+        <img src="icons/heart-063-yellow-pink.png" loading="lazy" alt="Yellow / Pink">
+        <div class="card-title">Yellow / Pink</div>
+        <div class="card-slug">#063 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="aqua" data-name="yellow / aqua yellow aqua" onclick="selectHeart('heart-064-yellow-aqua.png', 'Yellow / Aqua')">
+        <img src="icons/heart-064-yellow-aqua.png" loading="lazy" alt="Yellow / Aqua">
+        <div class="card-title">Yellow / Aqua</div>
+        <div class="card-slug">#064 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="cobalt" data-name="yellow / cobalt yellow cobalt" onclick="selectHeart('heart-065-yellow-cobalt.png', 'Yellow / Cobalt')">
+        <img src="icons/heart-065-yellow-cobalt.png" loading="lazy" alt="Yellow / Cobalt">
+        <div class="card-title">Yellow / Cobalt</div>
+        <div class="card-slug">#065 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="lime" data-name="yellow / lime yellow lime" onclick="selectHeart('heart-066-yellow-lime.png', 'Yellow / Lime')">
+        <img src="icons/heart-066-yellow-lime.png" loading="lazy" alt="Yellow / Lime">
+        <div class="card-title">Yellow / Lime</div>
+        <div class="card-slug">#066 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="gold" data-name="yellow / gold yellow gold" onclick="selectHeart('heart-067-yellow-gold.png', 'Yellow / Gold')">
+        <img src="icons/heart-067-yellow-gold.png" loading="lazy" alt="Yellow / Gold">
+        <div class="card-title">Yellow / Gold</div>
+        <div class="card-slug">#067 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="violet" data-name="yellow / violet yellow violet" onclick="selectHeart('heart-068-yellow-violet.png', 'Yellow / Violet')">
+        <img src="icons/heart-068-yellow-violet.png" loading="lazy" alt="Yellow / Violet">
+        <div class="card-title">Yellow / Violet</div>
+        <div class="card-slug">#068 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="obsidian" data-name="yellow / obsidian yellow obsidian" onclick="selectHeart('heart-069-yellow-obsidian.png', 'Yellow / Obsidian')">
+        <img src="icons/heart-069-yellow-obsidian.png" loading="lazy" alt="Yellow / Obsidian">
+        <div class="card-title">Yellow / Obsidian</div>
+        <div class="card-slug">#069 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="yellow" data-heart="silver" data-name="yellow / silver yellow silver" onclick="selectHeart('heart-070-yellow-silver.png', 'Yellow / Silver')">
+        <img src="icons/heart-070-yellow-silver.png" loading="lazy" alt="Yellow / Silver">
+        <div class="card-title">Yellow / Silver</div>
+        <div class="card-slug">#070 &bull; yellow</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="pearl" data-name="purple / pearl purple pearl" onclick="selectHeart('heart-071-purple-pearl.png', 'Purple / Pearl')">
+        <img src="icons/heart-071-purple-pearl.png" loading="lazy" alt="Purple / Pearl">
+        <div class="card-title">Purple / Pearl</div>
+        <div class="card-slug">#071 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="ruby" data-name="purple / ruby purple ruby" onclick="selectHeart('heart-072-purple-ruby.png', 'Purple / Ruby')">
+        <img src="icons/heart-072-purple-ruby.png" loading="lazy" alt="Purple / Ruby">
+        <div class="card-title">Purple / Ruby</div>
+        <div class="card-slug">#072 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="pink" data-name="purple / pink purple pink" onclick="selectHeart('heart-073-purple-pink.png', 'Purple / Pink')">
+        <img src="icons/heart-073-purple-pink.png" loading="lazy" alt="Purple / Pink">
+        <div class="card-title">Purple / Pink</div>
+        <div class="card-slug">#073 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="aqua" data-name="purple / aqua purple aqua" onclick="selectHeart('heart-074-purple-aqua.png', 'Purple / Aqua')">
+        <img src="icons/heart-074-purple-aqua.png" loading="lazy" alt="Purple / Aqua">
+        <div class="card-title">Purple / Aqua</div>
+        <div class="card-slug">#074 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="cobalt" data-name="purple / cobalt purple cobalt" onclick="selectHeart('heart-075-purple-cobalt.png', 'Purple / Cobalt')">
+        <img src="icons/heart-075-purple-cobalt.png" loading="lazy" alt="Purple / Cobalt">
+        <div class="card-title">Purple / Cobalt</div>
+        <div class="card-slug">#075 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="lime" data-name="purple / lime purple lime" onclick="selectHeart('heart-076-purple-lime.png', 'Purple / Lime')">
+        <img src="icons/heart-076-purple-lime.png" loading="lazy" alt="Purple / Lime">
+        <div class="card-title">Purple / Lime</div>
+        <div class="card-slug">#076 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="gold" data-name="purple / gold purple gold" onclick="selectHeart('heart-077-purple-gold.png', 'Purple / Gold')">
+        <img src="icons/heart-077-purple-gold.png" loading="lazy" alt="Purple / Gold">
+        <div class="card-title">Purple / Gold</div>
+        <div class="card-slug">#077 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="violet" data-name="purple / violet purple violet" onclick="selectHeart('heart-078-purple-violet.png', 'Purple / Violet')">
+        <img src="icons/heart-078-purple-violet.png" loading="lazy" alt="Purple / Violet">
+        <div class="card-title">Purple / Violet</div>
+        <div class="card-slug">#078 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="obsidian" data-name="purple / obsidian purple obsidian" onclick="selectHeart('heart-079-purple-obsidian.png', 'Purple / Obsidian')">
+        <img src="icons/heart-079-purple-obsidian.png" loading="lazy" alt="Purple / Obsidian">
+        <div class="card-title">Purple / Obsidian</div>
+        <div class="card-slug">#079 &bull; purple</div>
+      </div>
+      <div class="card" data-base="purple" data-heart="silver" data-name="purple / silver purple silver" onclick="selectHeart('heart-080-purple-silver.png', 'Purple / Silver')">
+        <img src="icons/heart-080-purple-silver.png" loading="lazy" alt="Purple / Silver">
+        <div class="card-title">Purple / Silver</div>
+        <div class="card-slug">#080 &bull; purple</div>
+      </div>
+      <div class="card" data-base="white" data-heart="pearl" data-name="white / pearl white pearl" onclick="selectHeart('heart-081-white-pearl.png', 'White / Pearl')">
+        <img src="icons/heart-081-white-pearl.png" loading="lazy" alt="White / Pearl">
+        <div class="card-title">White / Pearl</div>
+        <div class="card-slug">#081 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="ruby" data-name="white / ruby white ruby" onclick="selectHeart('heart-082-white-ruby.png', 'White / Ruby')">
+        <img src="icons/heart-082-white-ruby.png" loading="lazy" alt="White / Ruby">
+        <div class="card-title">White / Ruby</div>
+        <div class="card-slug">#082 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="pink" data-name="white / pink white pink" onclick="selectHeart('heart-083-white-pink.png', 'White / Pink')">
+        <img src="icons/heart-083-white-pink.png" loading="lazy" alt="White / Pink">
+        <div class="card-title">White / Pink</div>
+        <div class="card-slug">#083 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="aqua" data-name="white / aqua white aqua" onclick="selectHeart('heart-084-white-aqua.png', 'White / Aqua')">
+        <img src="icons/heart-084-white-aqua.png" loading="lazy" alt="White / Aqua">
+        <div class="card-title">White / Aqua</div>
+        <div class="card-slug">#084 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="cobalt" data-name="white / cobalt white cobalt" onclick="selectHeart('heart-085-white-cobalt.png', 'White / Cobalt')">
+        <img src="icons/heart-085-white-cobalt.png" loading="lazy" alt="White / Cobalt">
+        <div class="card-title">White / Cobalt</div>
+        <div class="card-slug">#085 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="lime" data-name="white / lime white lime" onclick="selectHeart('heart-086-white-lime.png', 'White / Lime')">
+        <img src="icons/heart-086-white-lime.png" loading="lazy" alt="White / Lime">
+        <div class="card-title">White / Lime</div>
+        <div class="card-slug">#086 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="gold" data-name="white / gold white gold" onclick="selectHeart('heart-087-white-gold.png', 'White / Gold')">
+        <img src="icons/heart-087-white-gold.png" loading="lazy" alt="White / Gold">
+        <div class="card-title">White / Gold</div>
+        <div class="card-slug">#087 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="violet" data-name="white / violet white violet" onclick="selectHeart('heart-088-white-violet.png', 'White / Violet')">
+        <img src="icons/heart-088-white-violet.png" loading="lazy" alt="White / Violet">
+        <div class="card-title">White / Violet</div>
+        <div class="card-slug">#088 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="obsidian" data-name="white / obsidian white obsidian" onclick="selectHeart('heart-089-white-obsidian.png', 'White / Obsidian')">
+        <img src="icons/heart-089-white-obsidian.png" loading="lazy" alt="White / Obsidian">
+        <div class="card-title">White / Obsidian</div>
+        <div class="card-slug">#089 &bull; white</div>
+      </div>
+      <div class="card" data-base="white" data-heart="silver" data-name="white / silver white silver" onclick="selectHeart('heart-090-white-silver.png', 'White / Silver')">
+        <img src="icons/heart-090-white-silver.png" loading="lazy" alt="White / Silver">
+        <div class="card-title">White / Silver</div>
+        <div class="card-slug">#090 &bull; white</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="pearl" data-name="grey / pearl grey pearl" onclick="selectHeart('heart-091-grey-pearl.png', 'Grey / Pearl')">
+        <img src="icons/heart-091-grey-pearl.png" loading="lazy" alt="Grey / Pearl">
+        <div class="card-title">Grey / Pearl</div>
+        <div class="card-slug">#091 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="ruby" data-name="grey / ruby grey ruby" onclick="selectHeart('heart-092-grey-ruby.png', 'Grey / Ruby')">
+        <img src="icons/heart-092-grey-ruby.png" loading="lazy" alt="Grey / Ruby">
+        <div class="card-title">Grey / Ruby</div>
+        <div class="card-slug">#092 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="pink" data-name="grey / pink grey pink" onclick="selectHeart('heart-093-grey-pink.png', 'Grey / Pink')">
+        <img src="icons/heart-093-grey-pink.png" loading="lazy" alt="Grey / Pink">
+        <div class="card-title">Grey / Pink</div>
+        <div class="card-slug">#093 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="aqua" data-name="grey / aqua grey aqua" onclick="selectHeart('heart-094-grey-aqua.png', 'Grey / Aqua')">
+        <img src="icons/heart-094-grey-aqua.png" loading="lazy" alt="Grey / Aqua">
+        <div class="card-title">Grey / Aqua</div>
+        <div class="card-slug">#094 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="cobalt" data-name="grey / cobalt grey cobalt" onclick="selectHeart('heart-095-grey-cobalt.png', 'Grey / Cobalt')">
+        <img src="icons/heart-095-grey-cobalt.png" loading="lazy" alt="Grey / Cobalt">
+        <div class="card-title">Grey / Cobalt</div>
+        <div class="card-slug">#095 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="lime" data-name="grey / lime grey lime" onclick="selectHeart('heart-096-grey-lime.png', 'Grey / Lime')">
+        <img src="icons/heart-096-grey-lime.png" loading="lazy" alt="Grey / Lime">
+        <div class="card-title">Grey / Lime</div>
+        <div class="card-slug">#096 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="gold" data-name="grey / gold grey gold" onclick="selectHeart('heart-097-grey-gold.png', 'Grey / Gold')">
+        <img src="icons/heart-097-grey-gold.png" loading="lazy" alt="Grey / Gold">
+        <div class="card-title">Grey / Gold</div>
+        <div class="card-slug">#097 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="violet" data-name="grey / violet grey violet" onclick="selectHeart('heart-098-grey-violet.png', 'Grey / Violet')">
+        <img src="icons/heart-098-grey-violet.png" loading="lazy" alt="Grey / Violet">
+        <div class="card-title">Grey / Violet</div>
+        <div class="card-slug">#098 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="obsidian" data-name="grey / obsidian grey obsidian" onclick="selectHeart('heart-099-grey-obsidian.png', 'Grey / Obsidian')">
+        <img src="icons/heart-099-grey-obsidian.png" loading="lazy" alt="Grey / Obsidian">
+        <div class="card-title">Grey / Obsidian</div>
+        <div class="card-slug">#099 &bull; grey</div>
+      </div>
+      <div class="card" data-base="grey" data-heart="silver" data-name="grey / silver grey silver" onclick="selectHeart('heart-100-grey-silver.png', 'Grey / Silver')">
+        <img src="icons/heart-100-grey-silver.png" loading="lazy" alt="Grey / Silver">
+        <div class="card-title">Grey / Silver</div>
+        <div class="card-slug">#100 &bull; grey</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="pearl" data-name="peach / pearl peach pearl" onclick="selectHeart('heart-101-peach-pearl.png', 'Peach / Pearl')">
+        <img src="icons/heart-101-peach-pearl.png" loading="lazy" alt="Peach / Pearl">
+        <div class="card-title">Peach / Pearl</div>
+        <div class="card-slug">#101 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="ruby" data-name="peach / ruby peach ruby" onclick="selectHeart('heart-102-peach-ruby.png', 'Peach / Ruby')">
+        <img src="icons/heart-102-peach-ruby.png" loading="lazy" alt="Peach / Ruby">
+        <div class="card-title">Peach / Ruby</div>
+        <div class="card-slug">#102 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="pink" data-name="peach / pink peach pink" onclick="selectHeart('heart-103-peach-pink.png', 'Peach / Pink')">
+        <img src="icons/heart-103-peach-pink.png" loading="lazy" alt="Peach / Pink">
+        <div class="card-title">Peach / Pink</div>
+        <div class="card-slug">#103 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="aqua" data-name="peach / aqua peach aqua" onclick="selectHeart('heart-104-peach-aqua.png', 'Peach / Aqua')">
+        <img src="icons/heart-104-peach-aqua.png" loading="lazy" alt="Peach / Aqua">
+        <div class="card-title">Peach / Aqua</div>
+        <div class="card-slug">#104 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="cobalt" data-name="peach / cobalt peach cobalt" onclick="selectHeart('heart-105-peach-cobalt.png', 'Peach / Cobalt')">
+        <img src="icons/heart-105-peach-cobalt.png" loading="lazy" alt="Peach / Cobalt">
+        <div class="card-title">Peach / Cobalt</div>
+        <div class="card-slug">#105 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="lime" data-name="peach / lime peach lime" onclick="selectHeart('heart-106-peach-lime.png', 'Peach / Lime')">
+        <img src="icons/heart-106-peach-lime.png" loading="lazy" alt="Peach / Lime">
+        <div class="card-title">Peach / Lime</div>
+        <div class="card-slug">#106 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="gold" data-name="peach / gold peach gold" onclick="selectHeart('heart-107-peach-gold.png', 'Peach / Gold')">
+        <img src="icons/heart-107-peach-gold.png" loading="lazy" alt="Peach / Gold">
+        <div class="card-title">Peach / Gold</div>
+        <div class="card-slug">#107 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="violet" data-name="peach / violet peach violet" onclick="selectHeart('heart-108-peach-violet.png', 'Peach / Violet')">
+        <img src="icons/heart-108-peach-violet.png" loading="lazy" alt="Peach / Violet">
+        <div class="card-title">Peach / Violet</div>
+        <div class="card-slug">#108 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="obsidian" data-name="peach / obsidian peach obsidian" onclick="selectHeart('heart-109-peach-obsidian.png', 'Peach / Obsidian')">
+        <img src="icons/heart-109-peach-obsidian.png" loading="lazy" alt="Peach / Obsidian">
+        <div class="card-title">Peach / Obsidian</div>
+        <div class="card-slug">#109 &bull; peach</div>
+      </div>
+      <div class="card" data-base="peach" data-heart="silver" data-name="peach / silver peach silver" onclick="selectHeart('heart-110-peach-silver.png', 'Peach / Silver')">
+        <img src="icons/heart-110-peach-silver.png" loading="lazy" alt="Peach / Silver">
+        <div class="card-title">Peach / Silver</div>
+        <div class="card-slug">#110 &bull; peach</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="pearl" data-name="orange / pearl orange pearl" onclick="selectHeart('heart-111-orange-pearl.png', 'Orange / Pearl')">
+        <img src="icons/heart-111-orange-pearl.png" loading="lazy" alt="Orange / Pearl">
+        <div class="card-title">Orange / Pearl</div>
+        <div class="card-slug">#111 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="ruby" data-name="orange / ruby orange ruby" onclick="selectHeart('heart-112-orange-ruby.png', 'Orange / Ruby')">
+        <img src="icons/heart-112-orange-ruby.png" loading="lazy" alt="Orange / Ruby">
+        <div class="card-title">Orange / Ruby</div>
+        <div class="card-slug">#112 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="pink" data-name="orange / pink orange pink" onclick="selectHeart('heart-113-orange-pink.png', 'Orange / Pink')">
+        <img src="icons/heart-113-orange-pink.png" loading="lazy" alt="Orange / Pink">
+        <div class="card-title">Orange / Pink</div>
+        <div class="card-slug">#113 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="aqua" data-name="orange / aqua orange aqua" onclick="selectHeart('heart-114-orange-aqua.png', 'Orange / Aqua')">
+        <img src="icons/heart-114-orange-aqua.png" loading="lazy" alt="Orange / Aqua">
+        <div class="card-title">Orange / Aqua</div>
+        <div class="card-slug">#114 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="cobalt" data-name="orange / cobalt orange cobalt" onclick="selectHeart('heart-115-orange-cobalt.png', 'Orange / Cobalt')">
+        <img src="icons/heart-115-orange-cobalt.png" loading="lazy" alt="Orange / Cobalt">
+        <div class="card-title">Orange / Cobalt</div>
+        <div class="card-slug">#115 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="lime" data-name="orange / lime orange lime" onclick="selectHeart('heart-116-orange-lime.png', 'Orange / Lime')">
+        <img src="icons/heart-116-orange-lime.png" loading="lazy" alt="Orange / Lime">
+        <div class="card-title">Orange / Lime</div>
+        <div class="card-slug">#116 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="gold" data-name="orange / gold orange gold" onclick="selectHeart('heart-117-orange-gold.png', 'Orange / Gold')">
+        <img src="icons/heart-117-orange-gold.png" loading="lazy" alt="Orange / Gold">
+        <div class="card-title">Orange / Gold</div>
+        <div class="card-slug">#117 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="violet" data-name="orange / violet orange violet" onclick="selectHeart('heart-118-orange-violet.png', 'Orange / Violet')">
+        <img src="icons/heart-118-orange-violet.png" loading="lazy" alt="Orange / Violet">
+        <div class="card-title">Orange / Violet</div>
+        <div class="card-slug">#118 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="obsidian" data-name="orange / obsidian orange obsidian" onclick="selectHeart('heart-119-orange-obsidian.png', 'Orange / Obsidian')">
+        <img src="icons/heart-119-orange-obsidian.png" loading="lazy" alt="Orange / Obsidian">
+        <div class="card-title">Orange / Obsidian</div>
+        <div class="card-slug">#119 &bull; orange</div>
+      </div>
+      <div class="card" data-base="orange" data-heart="silver" data-name="orange / silver orange silver" onclick="selectHeart('heart-120-orange-silver.png', 'Orange / Silver')">
+        <img src="icons/heart-120-orange-silver.png" loading="lazy" alt="Orange / Silver">
+        <div class="card-title">Orange / Silver</div>
+        <div class="card-slug">#120 &bull; orange</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="pearl" data-name="teal / pearl teal pearl" onclick="selectHeart('heart-121-teal-pearl.png', 'Teal / Pearl')">
+        <img src="icons/heart-121-teal-pearl.png" loading="lazy" alt="Teal / Pearl">
+        <div class="card-title">Teal / Pearl</div>
+        <div class="card-slug">#121 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="ruby" data-name="teal / ruby teal ruby" onclick="selectHeart('heart-122-teal-ruby.png', 'Teal / Ruby')">
+        <img src="icons/heart-122-teal-ruby.png" loading="lazy" alt="Teal / Ruby">
+        <div class="card-title">Teal / Ruby</div>
+        <div class="card-slug">#122 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="pink" data-name="teal / pink teal pink" onclick="selectHeart('heart-123-teal-pink.png', 'Teal / Pink')">
+        <img src="icons/heart-123-teal-pink.png" loading="lazy" alt="Teal / Pink">
+        <div class="card-title">Teal / Pink</div>
+        <div class="card-slug">#123 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="aqua" data-name="teal / aqua teal aqua" onclick="selectHeart('heart-124-teal-aqua.png', 'Teal / Aqua')">
+        <img src="icons/heart-124-teal-aqua.png" loading="lazy" alt="Teal / Aqua">
+        <div class="card-title">Teal / Aqua</div>
+        <div class="card-slug">#124 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="cobalt" data-name="teal / cobalt teal cobalt" onclick="selectHeart('heart-125-teal-cobalt.png', 'Teal / Cobalt')">
+        <img src="icons/heart-125-teal-cobalt.png" loading="lazy" alt="Teal / Cobalt">
+        <div class="card-title">Teal / Cobalt</div>
+        <div class="card-slug">#125 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="lime" data-name="teal / lime teal lime" onclick="selectHeart('heart-126-teal-lime.png', 'Teal / Lime')">
+        <img src="icons/heart-126-teal-lime.png" loading="lazy" alt="Teal / Lime">
+        <div class="card-title">Teal / Lime</div>
+        <div class="card-slug">#126 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="gold" data-name="teal / gold teal gold" onclick="selectHeart('heart-127-teal-gold.png', 'Teal / Gold')">
+        <img src="icons/heart-127-teal-gold.png" loading="lazy" alt="Teal / Gold">
+        <div class="card-title">Teal / Gold</div>
+        <div class="card-slug">#127 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="violet" data-name="teal / violet teal violet" onclick="selectHeart('heart-128-teal-violet.png', 'Teal / Violet')">
+        <img src="icons/heart-128-teal-violet.png" loading="lazy" alt="Teal / Violet">
+        <div class="card-title">Teal / Violet</div>
+        <div class="card-slug">#128 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="obsidian" data-name="teal / obsidian teal obsidian" onclick="selectHeart('heart-129-teal-obsidian.png', 'Teal / Obsidian')">
+        <img src="icons/heart-129-teal-obsidian.png" loading="lazy" alt="Teal / Obsidian">
+        <div class="card-title">Teal / Obsidian</div>
+        <div class="card-slug">#129 &bull; teal</div>
+      </div>
+      <div class="card" data-base="teal" data-heart="silver" data-name="teal / silver teal silver" onclick="selectHeart('heart-130-teal-silver.png', 'Teal / Silver')">
+        <img src="icons/heart-130-teal-silver.png" loading="lazy" alt="Teal / Silver">
+        <div class="card-title">Teal / Silver</div>
+        <div class="card-slug">#130 &bull; teal</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="pearl" data-name="midnight / pearl midnight pearl" onclick="selectHeart('heart-131-midnight-pearl.png', 'Midnight / Pearl')">
+        <img src="icons/heart-131-midnight-pearl.png" loading="lazy" alt="Midnight / Pearl">
+        <div class="card-title">Midnight / Pearl</div>
+        <div class="card-slug">#131 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="ruby" data-name="midnight / ruby midnight ruby" onclick="selectHeart('heart-132-midnight-ruby.png', 'Midnight / Ruby')">
+        <img src="icons/heart-132-midnight-ruby.png" loading="lazy" alt="Midnight / Ruby">
+        <div class="card-title">Midnight / Ruby</div>
+        <div class="card-slug">#132 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="pink" data-name="midnight / pink midnight pink" onclick="selectHeart('heart-133-midnight-pink.png', 'Midnight / Pink')">
+        <img src="icons/heart-133-midnight-pink.png" loading="lazy" alt="Midnight / Pink">
+        <div class="card-title">Midnight / Pink</div>
+        <div class="card-slug">#133 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="aqua" data-name="midnight / aqua midnight aqua" onclick="selectHeart('heart-134-midnight-aqua.png', 'Midnight / Aqua')">
+        <img src="icons/heart-134-midnight-aqua.png" loading="lazy" alt="Midnight / Aqua">
+        <div class="card-title">Midnight / Aqua</div>
+        <div class="card-slug">#134 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="cobalt" data-name="midnight / cobalt midnight cobalt" onclick="selectHeart('heart-135-midnight-cobalt.png', 'Midnight / Cobalt')">
+        <img src="icons/heart-135-midnight-cobalt.png" loading="lazy" alt="Midnight / Cobalt">
+        <div class="card-title">Midnight / Cobalt</div>
+        <div class="card-slug">#135 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="lime" data-name="midnight / lime midnight lime" onclick="selectHeart('heart-136-midnight-lime.png', 'Midnight / Lime')">
+        <img src="icons/heart-136-midnight-lime.png" loading="lazy" alt="Midnight / Lime">
+        <div class="card-title">Midnight / Lime</div>
+        <div class="card-slug">#136 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="gold" data-name="midnight / gold midnight gold" onclick="selectHeart('heart-137-midnight-gold.png', 'Midnight / Gold')">
+        <img src="icons/heart-137-midnight-gold.png" loading="lazy" alt="Midnight / Gold">
+        <div class="card-title">Midnight / Gold</div>
+        <div class="card-slug">#137 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="violet" data-name="midnight / violet midnight violet" onclick="selectHeart('heart-138-midnight-violet.png', 'Midnight / Violet')">
+        <img src="icons/heart-138-midnight-violet.png" loading="lazy" alt="Midnight / Violet">
+        <div class="card-title">Midnight / Violet</div>
+        <div class="card-slug">#138 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="obsidian" data-name="midnight / obsidian midnight obsidian" onclick="selectHeart('heart-139-midnight-obsidian.png', 'Midnight / Obsidian')">
+        <img src="icons/heart-139-midnight-obsidian.png" loading="lazy" alt="Midnight / Obsidian">
+        <div class="card-title">Midnight / Obsidian</div>
+        <div class="card-slug">#139 &bull; midnight</div>
+      </div>
+      <div class="card" data-base="midnight" data-heart="silver" data-name="midnight / silver midnight silver" onclick="selectHeart('heart-140-midnight-silver.png', 'Midnight / Silver')">
+        <img src="icons/heart-140-midnight-silver.png" loading="lazy" alt="Midnight / Silver">
+        <div class="card-title">Midnight / Silver</div>
+        <div class="card-slug">#140 &bull; midnight</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Dosya adı panoya kopyalandı!</div>
+
+  <script>
+    // Build initial simulator keys
+    const deckFrame = document.getElementById('deckFrame');
+    const initialHearts = [
+      'icons/heart-001-pink-pearl.png',
+      'icons/heart-011-black-pearl.png',
+      'icons/heart-013-black-pink.png',
+      'icons/heart-016-black-lime.png',
+      'icons/heart-014-black-aqua.png',
+      'icons/heart-021-red-pearl.png',
+      'icons/heart-029-red-obsidian.png',
+      'icons/heart-032-cyan-ruby.png',
+      'icons/heart-031-cyan-pearl.png',
+      'icons/heart-047-blue-gold.png',
+      'icons/heart-051-lime-pearl.png',
+      'icons/heart-069-yellow-obsidian.png',
+      'icons/heart-074-purple-aqua.png',
+      'icons/heart-082-white-ruby.png',
+      'icons/heart-091-grey-pearl.png',
+    ];
+
+    let currentKeyIdx = 0;
+    for (let i = 0; i < 15; i++) {
+      const key = document.createElement('div');
+      key.className = 'deck-key';
+      key.id = 'deckKey_' + i;
+      key.innerHTML = `<img src="${initialHearts[i] || initialHearts[0]}" alt="Heart">`;
+      key.onclick = () => { currentKeyIdx = i; };
+      deckFrame.appendChild(key);
+    }
+
+    function selectHeart(filename, title) {
+      const targetKey = document.getElementById('deckKey_' + currentKeyIdx);
+      if (targetKey) {
+        targetKey.innerHTML = `<img src="icons/${filename}" alt="${title}">`;
+      }
+      currentKeyIdx = (currentKeyIdx + 1) % 15;
+      
+      navigator.clipboard.writeText(filename).then(() => {
+        showToast(title + ' kopyalandı!');
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    // Search and filter
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.card');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name');
+        card.style.display = name.includes(q) ? 'flex' : 'none';
+      });
+    });
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        cards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-base') === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
